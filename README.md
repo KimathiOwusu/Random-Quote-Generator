@@ -1,42 +1,26 @@
-# Stock Price Analyzer
-# Created by [Kimathi Owusu-Sekyere]
-# A simple tool that fetches historical stock price data and plots closing prices
+import random
 
-import yfinance as yf
-import matplotlib.pyplot as plt
-import datetime
+# List of inspirational quotes
+quotes = [
+    "The only way to do great work is to love what you do. – Steve Jobs",
+    "Success is not final, failure is not fatal: It is the courage to continue that counts. – Winston Churchill",
+    "It does not matter how slowly you go as long as you do not stop. – Confucius",
+    "Believe you can and you're halfway there. – Theodore Roosevelt",
+    "Do not wait to strike till the iron is hot, but make it hot by striking. – William Butler Yeats",
+    "The future belongs to those who believe in the beauty of their dreams. – Eleanor Roosevelt",
+    "It always seems impossible until it’s done. – Nelson Mandela",
+    "Act as if what you do makes a difference. It does. – William James",
+    "You are never too old to set another goal or to dream a new dream. – C.S. Lewis"
+]
 
-# Function to fetch data for a given stock ticker
-def fetch_stock_data(ticker, start_date, end_date):
-    print(f"Fetching data for {ticker}...")
-    data = yf.download(ticker, start=start_date, end=end_date)
-    if data.empty:
-        print(f"No data found for {ticker}. Please check the ticker symbol.")
-    return data
+def get_random_quote():
+    """Returns a random quote from the list"""
+    return random.choice(quotes)
 
-# Function to plot closing prices
-def plot_stock_data(data, ticker):
-    if data.empty:
-        return
-    plt.figure(figsize=(10, 5))
-    plt.plot(data['Close'], label=f'{ticker} Closing Price')
-    plt.title(f'{ticker} Closing Price Over Time')
-    plt.xlabel('Date')
-    plt.ylabel('Price in USD')
-    plt.legend()
-    plt.grid()
-    plt.show()
+def main():
+    print("Welcome to the Random Quote Generator!")
+    print("Here’s an inspirational quote for you:")
+    print(get_random_quote())
 
-# Main execution block
 if __name__ == "__main__":
-    # Customize the ticker and date range
-    ticker = input("Enter the stock ticker (e.g., AAPL, MSFT, TSLA): ").upper()
-    start_date = input("Enter start date (YYYY-MM-DD): ")
-    end_date = input("Enter end date (YYYY-MM-DD): ")
-
-    # Fetch and plot data
-data = fetch_stock_data(ticker, start_date, end_date)
-plot_stock_data(data, ticker)
-
-# This project was created by [Your Name] to practice Python, data visualization, and working with financial data.
-# Feel free to use and modify!
+    main()
